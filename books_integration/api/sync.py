@@ -3,6 +3,7 @@ import json
 import frappe
 from frappe import _
 
+from books_integration.agent_debug_log import agent_debug
 from books_integration.sync.instance import get_company_for_instance, get_instance_by_device
 from books_integration.sync.pull import build_initial_master_docs, queue_row_to_books_payload
 from books_integration.sync.push import process_record
@@ -15,11 +16,32 @@ def get_pending_docs():
 	all_docs = frappe.form_dict.get("all_docs") or frappe.request.args.get("all_docs")
 	all_docs_flag = str(all_docs).lower() in ("1", "true", "yes")
 
+	# #region agent log
+	agent_debug(
+		"H4",
+		"api.sync.get_pending_docs:entry",
+		"get_pending_docs invoked",
+		{
+			"user": frappe.session.user,
+			"has_instance_id": bool(instance_id),
+			"all_docs": all_docs_flag,
+		},
+	)
+	# #endregion
+
 	if not instance_id:
 		return _pending_response(False, _("instance is required"), [])
 
 	inst = get_instance_by_device(instance_id)
 	if not inst:
+		# #region agent log
+		agent_debug(
+			"H4",
+			"api.sync.get_pending_docs:unknown_instance",
+			"no Books Instance for device",
+			{},
+		)
+		# #endregion
 		return _pending_response(False, _("Unknown instance — register first"), [])
 
 	company = get_company_for_instance(inst)

@@ -4,43 +4,72 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "tab_general",
+  "section_connection",
   "enable_sync",
+  "column_break_g1",
   "sync_dependant_masters",
   "sync_interval",
+  "column_break_g2",
   "default_company",
+  "section_connector",
   "app_version",
   "section_item_tax",
   "sync_item_as_non_inventory",
   "tax_mapping",
-  "section_masters",
+  "tab_masters",
   "sync_item",
+  "column_break_item_sync",
   "item_sync_type",
   "sync_customer",
+  "column_break_customer_sync",
   "customer_sync_type",
   "sync_supplier",
+  "column_break_supplier_sync",
   "supplier_sync_type",
   "sync_price_list",
+  "column_break_price_list_sync",
   "price_list_sync_type",
   "sync_batches",
+  "column_break_batches_sync",
   "batch_sync_type",
   "sync_serial_number",
+  "column_break_serial_sync",
   "serial_number_sync_type",
-  "section_transactions",
+  "tab_transactions",
   "sync_sales_invoice",
+  "column_break_si_sync",
   "sales_invoice_sync_type",
   "sync_sales_payment",
+  "column_break_sp_sync",
   "sales_payment_sync_type",
   "sync_stock",
+  "column_break_stock_sync",
   "stock_sync_type",
   "sync_delivery_note",
+  "column_break_dn_sync",
   "delivery_note_sync_type"
  ],
  "fields": [
+  {
+   "fieldname": "tab_general",
+   "fieldtype": "Tab Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "section_connection",
+   "fieldtype": "Section Break",
+   "label": "Connection"
+  },
   {
    "default": "1",
    "fieldname": "enable_sync",
    "fieldtype": "Check",
    "label": "Enable Sync"
+  },
+  {
+   "fieldname": "column_break_g1",
+   "fieldtype": "Column Break"
   },
   {
    "default": "1",
@@ -55,10 +84,19 @@
    "label": "Sync Interval (minutes)"
   },
   {
+   "fieldname": "column_break_g2",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "default_company",
    "fieldtype": "Link",
    "label": "Default Company",
    "options": "Company"
+  },
+  {
+   "fieldname": "section_connector",
+   "fieldtype": "Section Break",
+   "label": "Connector"
   },
   {
    "fieldname": "app_version",
@@ -84,8 +122,8 @@
    "options": "Books Tax Mapping"
   },
   {
-   "fieldname": "section_masters",
-   "fieldtype": "Section Break",
+   "fieldname": "tab_masters",
+   "fieldtype": "Tab Break",
    "label": "Masters"
   },
   {
@@ -93,6 +131,10 @@
    "fieldname": "sync_item",
    "fieldtype": "Check",
    "label": "Sync Item"
+  },
+  {
+   "fieldname": "column_break_item_sync",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Bidirectional",
@@ -108,6 +150,10 @@
    "label": "Sync Customer"
   },
   {
+   "fieldname": "column_break_customer_sync",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "Bidirectional",
    "fieldname": "customer_sync_type",
    "fieldtype": "Select",
@@ -119,6 +165,10 @@
    "fieldname": "sync_supplier",
    "fieldtype": "Check",
    "label": "Sync Supplier"
+  },
+  {
+   "fieldname": "column_break_supplier_sync",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Bidirectional",
@@ -134,6 +184,10 @@
    "label": "Sync Price List"
   },
   {
+   "fieldname": "column_break_price_list_sync",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "Bidirectional",
    "fieldname": "price_list_sync_type",
    "fieldtype": "Select",
@@ -145,6 +199,10 @@
    "fieldname": "sync_batches",
    "fieldtype": "Check",
    "label": "Sync Batches"
+  },
+  {
+   "fieldname": "column_break_batches_sync",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Bidirectional",
@@ -160,6 +218,10 @@
    "label": "Sync Serial Number"
   },
   {
+   "fieldname": "column_break_serial_sync",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "Pull",
    "fieldname": "serial_number_sync_type",
    "fieldtype": "Select",
@@ -167,8 +229,8 @@
    "options": "Push\nPull\nBidirectional"
   },
   {
-   "fieldname": "section_transactions",
-   "fieldtype": "Section Break",
+   "fieldname": "tab_transactions",
+   "fieldtype": "Tab Break",
    "label": "Transactions"
   },
   {
@@ -176,6 +238,10 @@
    "fieldname": "sync_sales_invoice",
    "fieldtype": "Check",
    "label": "Sync Sales Invoice"
+  },
+  {
+   "fieldname": "column_break_si_sync",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Bidirectional",
@@ -191,6 +257,10 @@
    "label": "Sync Sales Payment"
   },
   {
+   "fieldname": "column_break_sp_sync",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "Bidirectional",
    "fieldname": "sales_payment_sync_type",
    "fieldtype": "Select",
@@ -204,6 +274,10 @@
    "label": "Sync Stock"
   },
   {
+   "fieldname": "column_break_stock_sync",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "Pull",
    "fieldname": "stock_sync_type",
    "fieldtype": "Select",
@@ -215,6 +289,10 @@
    "fieldname": "sync_delivery_note",
    "fieldtype": "Check",
    "label": "Sync Delivery Note"
+  },
+  {
+   "fieldname": "column_break_dn_sync",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Bidirectional",
