@@ -1,0 +1,82 @@
+import frappe
+
+ERP_DOCTYPE_MAP = {
+	"Item": "Item",
+	"Customer": "Customer",
+	"Supplier": "Supplier",
+	"Sales Invoice": "SalesInvoice",
+	"Payment Entry": "Payment",
+	"Payment Entry Reference": "PaymentFor",
+	"Stock Entry": "StockMovement",
+	"Price List": "PriceList",
+	"Item Price": "PriceListItem",
+	"Serial No": "SerialNumber",
+	"Batch": "Batch",
+	"UOM": "UOM",
+	"UOM Conversion Detail": "UOMConversionItem",
+	"Delivery Note": "Shipment",
+	"Address": "Address",
+}
+
+BOOKS_DOCTYPE_MAP = {v: k for k, v in ERP_DOCTYPE_MAP.items()}
+
+
+def get_doctype_name(doctype: str | None, target: str | None, doc=None):
+	if not target:
+		return None
+
+	if not doctype and doc and doc.get("doctype"):
+		doctype = doc.get("doctype")
+
+	if not doctype:
+		return None
+
+	if target == "erpn":
+		if doc and doctype == "Party":
+			return doc.get("role")
+		return BOOKS_DOCTYPE_MAP.get(doctype)
+
+	return ERP_DOCTYPE_MAP.get(doctype)
+
+
+def update_books_reference(instance: str, reference: dict):
+	"""Keep ERPNext document name ↔ Books name mapping per device instance."""
+	doctype = get_doctype_name(reference.get("doctype"), "erpn")
+	if not doctype:
+		return
+
+	existing_ref = frappe.db.get_value(
+		"Books Reference",
+		{
+			"document_type": doctype,
+			"document_name": reference.get("name"),
+			"books_instance": instance,
+		},
+		["books_name", "name"],
+		as_dict=True,
+	)
+
+	if not existing_ref:
+		frappe.get_doc(
+			{
+				"doctype": "Books Reference",
+				"document_type": doctype,
+				"document_name": reference.get("name"),
+				"books_instance": instance,
+				"books_name": reference.get("books_name"),
+			}
+		).insert(ignore_permissions=True)
+		return
+
+	if existing_ref.books_name == reference.get("books_name"):
+		return
+
+	frappe.db.set_value("Books Reference", existing_ref.name, "books_name", reference.get("books_name"))
+
+
+def pretty_json(obj):
+	if not obj:
+		return ""
+	if isinstance(obj, str):
+		return obj
+	return frappe.as_json(obj, indent=2)

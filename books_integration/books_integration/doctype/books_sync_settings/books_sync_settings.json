@@ -1,0 +1,250 @@
+{
+ "actions": [],
+ "creation": "2026-04-16 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enable_sync",
+  "sync_dependant_masters",
+  "sync_interval",
+  "default_company",
+  "app_version",
+  "section_item_tax",
+  "sync_item_as_non_inventory",
+  "tax_mapping",
+  "section_masters",
+  "sync_item",
+  "item_sync_type",
+  "sync_customer",
+  "customer_sync_type",
+  "sync_supplier",
+  "supplier_sync_type",
+  "sync_price_list",
+  "price_list_sync_type",
+  "sync_batches",
+  "batch_sync_type",
+  "sync_serial_number",
+  "serial_number_sync_type",
+  "section_transactions",
+  "sync_sales_invoice",
+  "sales_invoice_sync_type",
+  "sync_sales_payment",
+  "sales_payment_sync_type",
+  "sync_stock",
+  "stock_sync_type",
+  "sync_delivery_note",
+  "delivery_note_sync_type"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "enable_sync",
+   "fieldtype": "Check",
+   "label": "Enable Sync"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_dependant_masters",
+   "fieldtype": "Check",
+   "label": "Sync Dependant Masters"
+  },
+  {
+   "default": "60",
+   "fieldname": "sync_interval",
+   "fieldtype": "Data",
+   "label": "Sync Interval (minutes)"
+  },
+  {
+   "fieldname": "default_company",
+   "fieldtype": "Link",
+   "label": "Default Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "app_version",
+   "fieldtype": "Data",
+   "label": "Connector Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_item_tax",
+   "fieldtype": "Section Break",
+   "label": "Item tax mapping"
+  },
+  {
+   "default": "0",
+   "fieldname": "sync_item_as_non_inventory",
+   "fieldtype": "Check",
+   "label": "Sync Items as Non-Inventory"
+  },
+  {
+   "fieldname": "tax_mapping",
+   "fieldtype": "Table",
+   "label": "Tax Mapping",
+   "options": "Books Tax Mapping"
+  },
+  {
+   "fieldname": "section_masters",
+   "fieldtype": "Section Break",
+   "label": "Masters"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_item",
+   "fieldtype": "Check",
+   "label": "Sync Item"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "item_sync_type",
+   "fieldtype": "Select",
+   "label": "Item Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_customer",
+   "fieldtype": "Check",
+   "label": "Sync Customer"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "customer_sync_type",
+   "fieldtype": "Select",
+   "label": "Customer Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_supplier",
+   "fieldtype": "Check",
+   "label": "Sync Supplier"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "supplier_sync_type",
+   "fieldtype": "Select",
+   "label": "Supplier Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_price_list",
+   "fieldtype": "Check",
+   "label": "Sync Price List"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "price_list_sync_type",
+   "fieldtype": "Select",
+   "label": "Price List Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_batches",
+   "fieldtype": "Check",
+   "label": "Sync Batches"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "batch_sync_type",
+   "fieldtype": "Select",
+   "label": "Batch Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "default": "0",
+   "fieldname": "sync_serial_number",
+   "fieldtype": "Check",
+   "label": "Sync Serial Number"
+  },
+  {
+   "default": "Pull",
+   "fieldname": "serial_number_sync_type",
+   "fieldtype": "Select",
+   "label": "Serial Number Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "fieldname": "section_transactions",
+   "fieldtype": "Section Break",
+   "label": "Transactions"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_sales_invoice",
+   "fieldtype": "Check",
+   "label": "Sync Sales Invoice"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "sales_invoice_sync_type",
+   "fieldtype": "Select",
+   "label": "Sales Invoice Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_sales_payment",
+   "fieldtype": "Check",
+   "label": "Sync Sales Payment"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "sales_payment_sync_type",
+   "fieldtype": "Select",
+   "label": "Sales Payment Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_stock",
+   "fieldtype": "Check",
+   "label": "Sync Stock"
+  },
+  {
+   "default": "Pull",
+   "fieldname": "stock_sync_type",
+   "fieldtype": "Select",
+   "label": "Stock Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_delivery_note",
+   "fieldtype": "Check",
+   "label": "Sync Delivery Note"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "delivery_note_sync_type",
+   "fieldtype": "Select",
+   "label": "Delivery Note Sync Type",
+   "options": "Push\nPull\nBidirectional"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-04-16 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Books Integration",
+ "name": "Books Sync Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

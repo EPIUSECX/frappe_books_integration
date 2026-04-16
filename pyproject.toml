@@ -1,5 +1,5 @@
 [project]
-name = "books_connector"
+name = "books_integration"
 authors = [
     { name = "Cohenix", email = "info@cohenix.com"}
 ]

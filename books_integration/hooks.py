@@ -1,5 +1,5 @@
-app_name = "books_connector"
-app_title = "Books Connector"
+app_name = "books_integration"
+app_title = "Books Integration"
 app_publisher = "Cohenix"
 app_description = "Connector Framework"
 app_email = "info@cohenix.com"
@@ -8,16 +8,16 @@ app_license = "mit"
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["erpnext"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
 # 	{
-# 		"name": "books_connector",
-# 		"logo": "/assets/books_connector/logo.png",
+# 		"name": "books_integration",
+# 		"logo": "/assets/books_integration/logo.png",
 # 		"title": "Books Connector",
-# 		"route": "/books_connector",
-# 		"has_permission": "books_connector.api.permission.has_app_permission"
+# 		"route": "/books_integration",
+# 		"has_permission": "books_integration.api.permission.has_app_permission"
 # 	}
 # ]
 
@@ -25,15 +25,15 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/books_connector/css/books_connector.css"
-# app_include_js = "/assets/books_connector/js/books_connector.js"
+# app_include_css = "/assets/books_integration/css/books_integration.css"
+# app_include_js = "/assets/books_integration/js/books_integration.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/books_connector/css/books_connector.css"
-# web_include_js = "/assets/books_connector/js/books_connector.js"
+# web_include_css = "/assets/books_integration/css/books_integration.css"
+# web_include_js = "/assets/books_integration/js/books_integration.js"
 
 # include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "books_connector/public/scss/website"
+# website_theme_scss = "books_integration/public/scss/website"
 
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
@@ -51,7 +51,7 @@ app_license = "mit"
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "books_connector/public/icons.svg"
+# app_include_icons = "books_integration/public/icons.svg"
 
 # Home Pages
 # ----------
@@ -78,49 +78,49 @@ app_license = "mit"
 
 # add methods and filters to jinja environment
 # jinja = {
-# 	"methods": "books_connector.utils.jinja_methods",
-# 	"filters": "books_connector.utils.jinja_filters"
+# 	"methods": "books_integration.utils.jinja_methods",
+# 	"filters": "books_integration.utils.jinja_filters"
 # }
 
 # Installation
 # ------------
 
-# before_install = "books_connector.install.before_install"
-# after_install = "books_connector.install.after_install"
+# before_install = "books_integration.install.before_install"
+after_install = "books_integration.install.after_install"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "books_connector.uninstall.before_uninstall"
-# after_uninstall = "books_connector.uninstall.after_uninstall"
+# before_uninstall = "books_integration.uninstall.before_uninstall"
+# after_uninstall = "books_integration.uninstall.after_uninstall"
 
 # Integration Setup
 # ------------------
 # To set up dependencies/integrations with other apps
 # Name of the app being installed is passed as an argument
 
-# before_app_install = "books_connector.utils.before_app_install"
-# after_app_install = "books_connector.utils.after_app_install"
+# before_app_install = "books_integration.utils.before_app_install"
+# after_app_install = "books_integration.utils.after_app_install"
 
 # Integration Cleanup
 # -------------------
 # To clean up dependencies/integrations with other apps
 # Name of the app being uninstalled is passed as an argument
 
-# before_app_uninstall = "books_connector.utils.before_app_uninstall"
-# after_app_uninstall = "books_connector.utils.after_app_uninstall"
+# before_app_uninstall = "books_integration.utils.before_app_uninstall"
+# after_app_uninstall = "books_integration.utils.after_app_uninstall"
 
 # Build
 # ------------------
 # To hook into the build process
 
-# after_build = "books_connector.build.after_build"
+# after_build = "books_integration.build.after_build"
 
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "books_connector.notifications.get_notification_config"
+# notification_config = "books_integration.notifications.get_notification_config"
 
 # Permissions
 # -----------
@@ -138,60 +138,64 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Sales Invoice": {
+		"on_submit": "books_integration.integration.doc_events.on_sales_invoice_change",
+	},
+	"Payment Entry": {
+		"on_submit": "books_integration.integration.doc_events.on_payment_entry_change",
+	},
+	"Item": {
+		"after_insert": "books_integration.integration.doc_events.on_item_change",
+		"on_update": "books_integration.integration.doc_events.on_item_change",
+	},
+	"Customer": {
+		"after_insert": "books_integration.integration.doc_events.on_customer_change",
+		"on_update": "books_integration.integration.doc_events.on_customer_change",
+	},
+	"Supplier": {
+		"after_insert": "books_integration.integration.doc_events.on_supplier_change",
+		"on_update": "books_integration.integration.doc_events.on_supplier_change",
+	},
+	"Delivery Note": {
+		"on_submit": "books_integration.integration.doc_events.on_delivery_note_change",
+	},
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"books_connector.tasks.all"
-# 	],
-# 	"daily": [
-# 		"books_connector.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"books_connector.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"books_connector.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"books_connector.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"hourly": [
+		"books_integration.tasks.hourly_cleanup",
+	],
+}
 
 # Testing
 # -------
 
-# before_tests = "books_connector.install.before_tests"
+# before_tests = "books_integration.install.before_tests"
 
 # Extend DocType Class
 # ------------------------------
 #
 # Specify custom mixins to extend the standard doctype controller.
 # extend_doctype_class = {
-# 	"Task": "books_connector.custom.task.CustomTaskMixin"
+# 	"Task": "books_integration.custom.task.CustomTaskMixin"
 # }
 
 # Overriding Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "books_connector.event.get_events"
+# 	"frappe.desk.doctype.event.event.get_events": "books_integration.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
-# 	"Task": "books_connector.task.get_dashboard_data"
+# 	"Task": "books_integration.task.get_dashboard_data"
 # }
 
 # exempt linked doctypes from being automatically cancelled
@@ -205,13 +209,13 @@ app_license = "mit"
 
 # Request Events
 # ----------------
-# before_request = ["books_connector.utils.before_request"]
-# after_request = ["books_connector.utils.after_request"]
+# before_request = ["books_integration.utils.before_request"]
+# after_request = ["books_integration.utils.after_request"]
 
 # Job Events
 # ----------
-# before_job = ["books_connector.utils.before_job"]
-# after_job = ["books_connector.utils.after_job"]
+# before_job = ["books_integration.utils.before_job"]
+# after_job = ["books_integration.utils.after_job"]
 
 # User Data Protection
 # --------------------
@@ -241,7 +245,7 @@ app_license = "mit"
 # --------------------------------
 
 # auth_hooks = [
-# 	"books_connector.auth.validate"
+# 	"books_integration.auth.validate"
 # ]
 
 # Automatically update python controller files with type annotations for this app.
@@ -255,4 +259,3 @@ app_license = "mit"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-
